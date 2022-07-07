@@ -1,3 +1,4 @@
+import 'package:bank_app/layouts/modules/build_last_transactions.dart';
 import 'package:bank_app/layouts/modules/build_transfer_button.dart';
 import 'package:bank_app/layouts/modules/transaction_item_builder.dart';
 import 'package:bank_app/models/user_data.dart';
@@ -57,21 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   const SizedBox(height: 80,),
                   Text('TRANSACTIONS', style: TextStyle(fontSize: height/40 ),),
                   const SizedBox(height: 20,),
-                  cubit.lastTransactions.isNotEmpty
-                      ? ListView.separated(
-                              physics: const NeverScrollableScrollPhysics(),
-                              shrinkWrap: true,
-                              itemBuilder: (context, index) => transactionItemBuilder(cubit.lastTransactions[index], context),
-                              separatorBuilder: (context, index) =>
-                                  const SizedBox(
-                                    height: 10,
-                                  ),
-                              itemCount:
-                                  cubit.usersList.length)
-                      : Padding(
-                        padding: EdgeInsets.only(top: height/4),
-                        child: Text('There are no recently transactions ^^', style: TextStyle(fontSize: height/40, color: Colors.white54),),
-                      ),
+                  buildLastTransactions(context),
                 ],
               ),
             ),

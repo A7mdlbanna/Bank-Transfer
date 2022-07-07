@@ -18,7 +18,7 @@ Widget transactionItemBuilder(UserData? user, context){
           ],
         ),
         Spacer(),
-        Text('${cubit.formatNumber(!user.lastTransactionState ? user.lastTransaction*-1 : user.lastTransaction)}\$', style: TextStyle(fontSize: 18, fontFamily: 'numbers'),),
+        Text('${cubit.formatNumber(!user.lastTransactionState ? user.lastTransaction*-1 : user.lastTransaction)}\$', style: TextStyle(fontSize: 18, fontFamily: 'numbers', color: Colors.red[600]),),
       ],
     ),
   );

@@ -3,20 +3,9 @@ abstract class AppStates{}
 class AppInitialState extends AppStates{}
 
 
-/////////////////HomeScreen////////////////////
-class AppChangeNavBarState extends AppStates{}
-class AppChangeFloatingIconPlusState extends AppStates{}
-class AppChangeFloatingIconState extends AppStates{}
-class AppClearTask extends AppStates{}
 
-class AppSetDateController extends AppStates{}
-class AppSetTimeController extends AppStates{}
-
-
-/////////////////NewTasks//////////////////
-class AppChangeIsDoneState extends AppStates{}
-class AppChangeIsImportantState extends AppStates{}
-
+class TransferMoney extends AppStates{}
+class AddTransaction extends AppStates{}
 
 ////////////////DataBase//////////////////
 class AppChangeTasksValue extends AppStates{}

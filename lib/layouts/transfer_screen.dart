@@ -1,8 +1,8 @@
-import 'package:bank_app/layouts/modules/user_item_builder.dart';
 import 'package:flutter/material.dart';
 
 import '../shared/cubit/cubit.dart';
-import 'modules/transaction_item_builder.dart';
+import 'modules/build_last_transactions.dart';
+import 'modules/build_user_list.dart';
 
 class TransferScreen extends StatelessWidget {
   const TransferScreen({Key? key}) : super(key: key);
@@ -10,10 +10,7 @@ class TransferScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     AppCubit cubit = AppCubit.get(context);
-    double height = MediaQuery
-        .of(context)
-        .size
-        .height;
+    double height = MediaQuery.of(context).size.height;
 
     return Scaffold(
         backgroundColor: const Color(0xFF1C1C1E),
@@ -31,8 +28,8 @@ class TransferScreen extends StatelessWidget {
           ],
         ),
         body: cubit.usersList.isEmpty
-            ? const Center(child: CircularProgressIndicator(),)
-            : Container(
+            ? const Center(child: CircularProgressIndicator(),
+        ) : Container(
           padding: EdgeInsets.symmetric(horizontal: 20),
           width: double.infinity,
           child: SingleChildScrollView(
@@ -42,32 +39,11 @@ class TransferScreen extends StatelessWidget {
                 Text('Transfer', style: TextStyle(fontSize: height / 20),),
                 Text('Money', style: TextStyle(fontSize: height / 40, color: Colors.white38),),
                 const SizedBox(height: 20,),
-                ListView.separated(
-                    physics: const NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    itemBuilder: (context, index) => userItemBuilder(cubit.usersList[index], context),
-                    separatorBuilder: (context, index) =>
-                    const SizedBox(height: 10,),
-                    itemCount: cubit.usersList.length
-                ),
+                buildUserList(context),
                 Divider(),
                 SizedBox(height: 30,),
                 Text('Last Transactions', style: TextStyle(fontSize: height/40 ),),
-                cubit.lastTransactions.isNotEmpty
-                    ? ListView.separated(
-                        physics: const NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        itemBuilder: (context, index) =>
-                            transactionItemBuilder(cubit.lastTransactions[index], context),
-                        separatorBuilder: (context, index) =>
-                        const SizedBox(height: 10,),
-                        itemCount: cubit.lastTransactions.length
-                    )
-                    : Padding(
-                        padding: EdgeInsets.symmetric(vertical: height / 4),
-                        child: Text('There are no recently transactions ^^',
-                          style: TextStyle(fontSize: height / 40, color: Colors.white54),),
-                ),
+                buildLastTransactions(context),
               ],
             ),
           ),

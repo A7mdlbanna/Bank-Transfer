@@ -2,11 +2,15 @@ import 'package:bank_app/shared/cubit/cubit.dart';
 import 'package:flutter/material.dart';
 
 import '../../models/user_data.dart';
+import 'build_alert_dialog.dart';
 
 Widget userItemBuilder(UserData? user, context){
   AppCubit cubit = AppCubit.get(context);
+
   return InkWell(
-    onTap: (){},
+    onTap: () {
+       buildAlertDialog(context, user);
+    },
     child: SizedBox(
       height: MediaQuery.of(context).size.height/12, width: double.infinity,
       child: Row(
@@ -20,7 +24,7 @@ Widget userItemBuilder(UserData? user, context){
             ],
           ),
           Spacer(),
-          Text('${cubit.formatNumber(user.currentBalance)}\$', style: TextStyle(fontSize: 18, fontFamily: 'numbers'),),
+          Text('${cubit.formatNumber(user.currentBalance)}\$', style: const TextStyle(fontSize: 18, fontFamily: 'numbers'),),
         ],
       ),
     ),

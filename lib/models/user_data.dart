@@ -26,7 +26,7 @@ class UserData{
     email = user['email'];
     currentBalance = user['current_balance'];
     lastTransaction = user['last_transaction'];
-    lastTransactionState = user['last_transaction_state']=='true';
+    lastTransactionState = user['last_transaction_state']==0;
     lastTransactionDate = user['last_transaction_date'];
   }
 }
